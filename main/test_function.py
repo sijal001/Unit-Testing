@@ -59,7 +59,7 @@ def test_add():
                 )  # addition of every possbility of given intiger range
                 assert add(num_1, num_2, num_3) == add_value
 
-
+"""
 # Testing output generated.
 @mock.patch("function.connect_to_db")
 def test_get_users_list_from_db(mock_connect_to_db):
@@ -69,7 +69,7 @@ def test_get_users_list_from_db(mock_connect_to_db):
     * json format list is created to similate database structure. for .get_user 
     to grab the user formats.
     """
-    test_json = [
+    data = [
         {"username": "sijal", "birthday": "09/02/1994", "role": "admin"},
         {"username": "diky", "birthday": "06/08/1996", "role": "customer"},
         {"username": "raha", "birthday": "06/07/1964", "role": "manager"},
@@ -92,11 +92,60 @@ def test_get_users_list_from_db(mock_connect_to_db):
         {"username": "Vaigo", "birthday": "12/12/1999", "role": "Designer"},
     ]
 
-    for i in range(len(test_json)):
-        test_parms = test_json[i]
+
+    for i in range(len(data)):
+        test_parms = data[i]
 
         mock_connect_to_db.return_value = mock.Mock(
             **{"get_user.return_value": test_parms}
         )  # mock the connect_to_db fucntion  to ignore error and provid required data.
 
         assert get_users_list_from_db("test") == test_parms
+if __name__ == __main__:
+"""
+
+# Testing output generated.
+@mock.patch("function.connect_to_db")
+def test_get_users_list_from_db(mock_connect_to_db):
+    """
+    * Normally connect_to_db() raise an error. so, mocke is used to handel this 
+    issue.
+    * json format list is created to similate database structure. for .get_user 
+    to grab the user formats.
+    """
+    data = [
+        {"username": "sijal", "birthday": "09/02/1994", "role": "admin"},
+        {"username": "diky", "birthday": "06/08/1996", "role": "customer"},
+        {"username": "raha", "birthday": "06/07/1964", "role": "manager"},
+        {"username": "roma", "birthday": "19/09/1999", "role": "student"},
+        {"username": "hulat", "birthday": "16/15/1979", "role": "Programmer"},
+        {"username": "Dimak", "birthday": "17/08/1974", "role": "restro"},
+        {"username": "Chaina", "birthday": "07/07/1970", "role": "Banker"},
+        {"username": "Kai", "birthday": "05/05/1975", "role": "Guard"},
+        {"username": "Pani", "birthday": "27/12/1990", "role": "Operator"},
+        {"username": "Ako", "birthday": "15/05/1980", "role": "Sales"},
+        {"username": "Jasto", "birthday": "05/08/1984", "role": "cook"},
+        {"username": "Maan", "birthday": "05/08/1985", "role": "customer"},
+        {"username": "Lagay", "birthday": "09/12/1965", "role": "Chef"},
+        {"username": "Wosta", "birthday": "23/11/1991", "role": "Programmer"},
+        {"username": "Lekhda", "birthday": "15/09/1987", "role": "Marketing"},
+        {"username": "Huncha", "birthday": "23/11/1985", "role": "Waiter"},
+        {"username": "Mind", "birthday": "11/12/1987", "role": "Sles"},
+        {"username": "Nagari", "birthday": "26/05/1985", "role": "Operator"},
+        {"username": "Lekhay", "birthday": "05/12/1990", "role": "Developer"},
+        {"username": "Vaigo", "birthday": "12/12/1999", "role": "Designer"},
+    ]
+
+    mock_db = Mock()
+    mock_db.return_value = data
+    connection_string = mock_db
+
+    for i in range(len(data)):
+        test_parms = data[i]
+
+        mock_connect_to_db.return_value = mock.Mock(
+            **{"get_user.return_value": test_parms}
+        )  # mock the connect_to_db fucntion  to ignore error and provid required data.
+
+        assert get_users_list_from_db("test") == test_parms
+if __name__ == __main__:
